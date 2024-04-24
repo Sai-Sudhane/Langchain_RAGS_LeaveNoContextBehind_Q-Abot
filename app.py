@@ -8,10 +8,11 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
+key = st.secrets["GEMINI_API_KEY"]
 doc_embeddings_model = GoogleGenerativeAIEmbeddings(
     model="models/embedding-001",
     task_type="retrieval_document",
-    google_api_key="AIzaSyBT_cXS1-V5ggaDcx7heSHJMb0h1r-xoPU",
+    google_api_key=key,
 )
 
 db_connection = Chroma(
@@ -33,7 +34,7 @@ chat_template = ChatPromptTemplate.from_messages(
 
 chat_model = ChatGoogleGenerativeAI(
     model="gemini-1.5-pro-latest",
-    google_api_key="AIzaSyB3BBf69PnHSy1crohfyymSJfDmvLdRjvs",
+    google_api_key=key,
 )
 
 output_parser = StrOutputParser()
